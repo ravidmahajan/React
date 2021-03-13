@@ -1,5 +1,6 @@
 // CLASS BASED COMPONENT
 // =================================================================================
+import { buildQueries } from '@testing-library/dom';
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
@@ -40,9 +41,19 @@ nameChangedHandler = (event) => {
 
 
     render() {
+// inline style- scoped style not able to leverage but theres a way
+        const style = {
+            backgroundColor: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
+        }
+
         return ( <div className = "App">
         <h1> Hi I am React app </h1> 
-        <button onClick={ () => this.switchNameHandler('Maximilian')}>Click here</button>
+        <button style={style}
+                onClick={ () => this.switchNameHandler('Maximilian')}>Click here</button>
          {/* not run immediately here */}
         <Person 
         click={this.switchNameHandler.bind(this, 'Rahul')}
