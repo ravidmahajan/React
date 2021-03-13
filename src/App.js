@@ -43,7 +43,7 @@ nameChangedHandler = (event) => {
         return ( <div className = "App">
         <h1> Hi I am React app </h1> 
         <button onClick={ () => this.switchNameHandler('Maximilian')}>Click here</button>
-        // not return immediately here
+         {/* not run immediately here */}
         <Person 
         click={this.switchNameHandler.bind(this, 'Rahul')}
         name = { this.state.persons[0].name }
