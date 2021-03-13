@@ -27,17 +27,31 @@ class App extends Component {
     })
 }
 
+
+nameChangedHandler = (event) => {
+
+    this.setState({
+        persons : [
+            { name: 'raj' , surname: 'Mahajan' },
+            { name: event.target.value, surname: 'Mahajan' }
+        ]
+    })
+}
+
+
     render() {
         return ( <div className = "App">
         <h1> Hi I am React app </h1> 
-        <button onClick={this.switchNameHandler.bind(this, 'Maximilian')}>Click here</button>
+        <button onClick={ () => this.switchNameHandler('Maximilian')}>Click here</button>
+        // not return immediately here
         <Person 
         click={this.switchNameHandler.bind(this, 'Rahul')}
         name = { this.state.persons[0].name }
         surname = { this.state.persons[0].surname }>Hey hiii! </Person>
         <Person 
         name = { this.state.persons[1].name }
-        surname = { this.state.persons[1].surname }/> 
+        surname = { this.state.persons[1].surname }
+        changedName={this.nameChangedHandler}/> 
         </div>
     );
     }   
