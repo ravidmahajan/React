@@ -9,39 +9,45 @@ import Person from './Person/Person';
 class App extends Component {
 
     state = {
-        persons : [
+        persons: [
             { name: 'Ravi', surname: 'Mahajan' },
             { name: 'Raj', surname: 'Mahajan' }
         ],
-         otherState: 'some other value'
+        otherState: 'some other value',
+        showPersons: false
+    }
+
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({ showPersons: !doesShow });
     }
 
     switchNameHandler = (newName) => {
-    //console.log('button was clicked');
-    // dont use this.state.persons[0].name = 'Maximilian';
+        //console.log('button was clicked');
+        // dont use this.state.persons[0].name = 'Maximilian';
 
-    this.setState({
-        persons : [
-            { name: newName , surname: 'Mahajan' },
-            { name: 'Raj', surname: 'Mahajan' }
-        ]
-    })
-}
+        this.setState({
+            persons: [
+                { name: newName, surname: 'Mahajan' },
+                { name: 'Raj', surname: 'Mahajan' }
+            ]
+        })
+    }
 
 
-nameChangedHandler = (event) => {
+    nameChangedHandler = (event) => {
 
-    this.setState({
-        persons : [
-            { name: 'raj' , surname: 'Mahajan' },
-            { name: event.target.value, surname: 'Mahajan' }
-        ]
-    })
-}
+        this.setState({
+            persons: [
+                { name: 'raj', surname: 'Mahajan' },
+                { name: event.target.value, surname: 'Mahajan' }
+            ]
+        })
+    }
 
 
     render() {
-// inline style- scoped style not able to leverage but theres a way
+        // inline style- scoped style not able to leverage but theres a way
         const style = {
             backgroundColor: 'white',
             font: 'inherit',
@@ -50,22 +56,34 @@ nameChangedHandler = (event) => {
             cursor: 'pointer'
         }
 
-        return ( <div className = "App">
-        <h1> Hi I am React app </h1> 
-        <button style={style}
-                onClick={ () => this.switchNameHandler('Maximilian')}>Click here</button>
-         {/* not run immediately here */}
-        <Person 
-        click={this.switchNameHandler.bind(this, 'Rahul')}
-        name = { this.state.persons[0].name }
-        surname = { this.state.persons[0].surname }>Hey hiii! </Person>
-        <Person 
-        name = { this.state.persons[1].name }
-        surname = { this.state.persons[1].surname }
-        changedName={this.nameChangedHandler}/> 
-        </div>
-    );
-    }   
+        return ( < div className = "App" >
+            <
+            h1 > Hi I am React app < /h1>  {
+                /* <button style={style}
+                                onClick={ () => this.switchNameHandler('Maximilian')}>Click here</button> */
+            }
+
+            <
+            button style = { style }
+            onClick = { this.togglePersonsHandler } > Click here < /button> { /* not run immediately here */ } {
+                this.state.showPersons === true ?
+                    <
+                    div >
+                    <
+                    Person
+                click = { this.switchNameHandler.bind(this, 'Rahul') }
+                name = { this.state.persons[0].name }
+                surname = { this.state.persons[0].surname } > Hey hiii! < /Person> <
+                    Person
+                name = { this.state.persons[1].name }
+                surname = { this.state.persons[1].surname }
+                changedName = { this.nameChangedHandler }
+                />  <
+                /div> : null
+            } <
+            /div>
+        );
+    }
 }
 export default App;
 
@@ -91,7 +109,7 @@ export default App;
 
 //     //useState({otherState: 'some other value'});
 
-    
+
 
 //     const [otherState, setOtherState] = useState('some other value');
 
