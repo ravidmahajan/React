@@ -56,6 +56,23 @@ nameChangedHandler = (event) => {
             cursor: 'pointer'
         }
 
+        let persons = null;
+
+        if(this.state.showPersons){
+            persons = (
+                <div>
+         <Person 
+        click={this.switchNameHandler.bind(this, 'Rahul')}
+        name = { this.state.persons[0].name }
+        surname = { this.state.persons[0].surname }>Hey hiii! </Person>
+        <Person 
+        name = { this.state.persons[1].name }
+        surname = { this.state.persons[1].surname }
+        changedName={this.nameChangedHandler}/> 
+        </div>
+            )
+        }
+
         return ( <div className = "App">
         <h1> Hi I am React app </h1> 
         {/* <button style={style}
@@ -64,9 +81,11 @@ nameChangedHandler = (event) => {
         <button style={style}
                 onClick={this.togglePersonsHandler}>Click here</button>
          {/* not run immediately here */}
-         { this.state.showPersons === true ? 
-            <div>
-                <Person 
+
+{/* conditional 1st way */}
+         {/* { this.state.showPersons === true ? 
+        <div>
+         <Person 
         click={this.switchNameHandler.bind(this, 'Rahul')}
         name = { this.state.persons[0].name }
         surname = { this.state.persons[0].surname }>Hey hiii! </Person>
@@ -75,7 +94,10 @@ nameChangedHandler = (event) => {
         surname = { this.state.persons[1].surname }
         changedName={this.nameChangedHandler}/> 
         </div> : null
-         }
+         } */}
+
+         {/* conditional 2nd way */}
+            {persons}
          </div>
     );
     }   
